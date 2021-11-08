@@ -1,20 +1,10 @@
 const express = require("express");
-const cors = require("cors");
-const TargetSelectionModule = require("./TargetSelectionModule");
+const TargetSelectionModule = require("./combatDroid/targetSelectionModule");
 const selectTarget = new TargetSelectionModule();
 
 const app = express();
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: "*",
-  })
-);
-
-app.get("/", (req, res) => {
-  res.json({ greeting: "may the force be with you" });
-});
 
 app.post("/radar", (req, res) => {
   const target = selectTarget.setTarget(req.body);
