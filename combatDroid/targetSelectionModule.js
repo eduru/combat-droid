@@ -43,7 +43,7 @@ class TargetSelectionModule {
     protocols.forEach((protocol) => {
       if (protocol === "closest-enemies") {
         target = closestEnemies(targetList).coordinates;
-      } else {
+      } else if (protocol === "furthest-enemies") {
         target = furthestEnemies(targetList).coordinates;
       }
     });
