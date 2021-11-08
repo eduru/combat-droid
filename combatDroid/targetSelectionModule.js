@@ -13,7 +13,6 @@ class TargetSelectionModule {
 
   setTarget(params) {
     const { protocols, scan } = params;
-
     if (!params) throw new Error("Invalid command");
     let target = {};
     let targetList = [...scan];
@@ -31,8 +30,8 @@ class TargetSelectionModule {
         targetList = avoidMech(scan);
       }
     });
+
     addDistances(targetList);
-    console.log(targetList);
     if (targetList.length === 1) {
       return {
         x: targetList[0].coordinates.x,
@@ -40,14 +39,27 @@ class TargetSelectionModule {
       };
     }
 
+    /* I would prefer to implement a function that prioritizes 
+    whenever you have combined protocols 
+    such as the one below, but I'm running out of time */
+
+    if (
+      protocols.includes("avoid-crossfire") &&
+      protocols.includes("prioritize-mech")
+    ) {
+      targetList = targetList.filter((t) => t.enemies.type !== "soldier");
+      console.log(targetList);
+    }
+
     protocols.forEach((protocol) => {
       if (protocol === "closest-enemies") {
         target = closestEnemies(targetList).coordinates;
-      } else if (protocol === "furthest-enemies") {
+      }
+      if (protocol === "furthest-enemies") {
         target = furthestEnemies(targetList).coordinates;
       }
     });
-    console.log(target, "target");
+
     return {
       x: target.x,
       y: target.y,
