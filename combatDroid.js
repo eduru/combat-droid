@@ -14,23 +14,23 @@ class TargetSelectionModule {
     if (!params) throw new Error("Invalid command");
 
     //let target = {};
-    const instructions = [];
-
+    let instructions = [];
     protocols.forEach((protocol) => {
       if (protocol === "assist-allies") {
-        instructions.push(assistAllies(scan));
+        instructions = [...instructions, ...assistAllies(scan)];
       }
       if (protocol === "avoid-crossfire") {
-        instructions.push(avoidCrossfire(scan));
+        instructions = [...instructions, ...avoidCrossfire(scan)];
       }
       if (protocol === "prioritize-mech") {
-        instructions.push(prioritizeMech(scan));
+        instructions = [...instructions, ...prioritizeMech(scan)];
       }
       if (protocol === "avoid-mech") {
-        instructions.push(avoidMech(scan));
+        instructions = [...instructions, ...avoidMech(scan)];
       }
     });
-    console.log(instructions);
+    console.log("+++++++++++++++");
+    console.log(instructions, "after");
   }
 }
 
@@ -44,9 +44,17 @@ const scan = [
     coordinates: { y: 30, x: 10 },
     allies: 3,
   },
+  {
+    enemies: { number: 20, type: "soldier" },
+    coordinates: { y: 32, x: 14 },
+    allies: 3,
+  },
 ];
 
 const testDroid = new TargetSelectionModule();
-testDroid.setTarget({ protocols: ["assist-allies", "avoid-mech"], scan });
+testDroid.setTarget({
+  protocols: ["assist-allies", "closest"],
+  scan,
+});
 
 //module.exports = CombatDroid;

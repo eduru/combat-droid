@@ -35,13 +35,13 @@ const scan = [
     coordinates: { y: 35, x: 5 },
   },
   {
-    enemies: { number: 20, type: "mech" },
+    enemies: { number: 20, type: "soldier" },
     coordinates: { y: 30, x: 10 },
     allies: 3,
   },
 ];
 
-console.log(prioritizeMech(scan));
+//console.log(prioritizeMech(scan));
 
 module.exports = {
   assistAllies,
