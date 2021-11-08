@@ -29,6 +29,13 @@ function avoidMech(scan) {
   });
 }
 
+const addDistances = (scan) => {
+  const calculate = (axis) => {
+    return Math.sqrt(Math.pow(axis.x, 2) + Math.pow(axis.y, 2));
+  };
+  return scan.map((e) => (e.distance = calculate(e.coordinates)));
+};
+
 const scan = [
   {
     enemies: { number: 10, type: "mech" },
@@ -41,7 +48,7 @@ const scan = [
   },
 ];
 
-//console.log(prioritizeMech(scan));
+console.log(addDistances(scan));
 
 module.exports = {
   assistAllies,
