@@ -16,7 +16,6 @@ app.get("/", (req, res) => {
 
 app.post("/radar", (req, res) => {
   const { protocols, scan } = req.body;
-  console.log(scan);
   res.json(req.body);
 });
 

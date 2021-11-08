@@ -1,30 +1,23 @@
-const test = {
-  protocols: ["avoid-mech"],
-  scan: [
-    {
-      coordinates: {
-        x: 0,
-        y: 40,
-      },
-      enemies: {
-        type: "soldier",
-        number: 10,
-      },
-    },
-  ],
-};
+class TargetSelectionModule {
+  constructor() {}
 
-class CombatDroid {
-  constructor(protocols, scan, enemies, allies) {
-    this.protocols = protocols;
-    this.scan = scan;
-    this.enemies = enemies;
-    this.allies = allies;
-  }
-
-  greeting() {
-    console.log("hey!");
+  setTarget(params) {
+    let target = [];
+    if (!params) throw new Error("Invalid command");
+    const { protocols, scan } = params;
+    protocols.forEach((e) => {
+      if (e === "closest-enemies") target.push("closest-enemies");
+      if (e === "furthest-enemies") target.push("furthest-enemies");
+      if (e === "assist-allies") target.push("assist-allies");
+      if (e === "avoid-crossfire") target.push("avoid-crossfire");
+      if (e === "prioritize-mech") target.push("prioritize-mech");
+      if (e === "avoid-mech") target.push("avoid-mech");
+    });
+    console.log(target);
   }
 }
 
-module.exports = CombatDroid;
+const testDroid = new TargetSelectionModule();
+testDroid.setTarget({ protocols: ["closest-enemies", "avoid-mech"] });
+
+//module.exports = CombatDroid;
