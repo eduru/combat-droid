@@ -48,7 +48,6 @@ class TargetSelectionModule {
       protocols.includes("prioritize-mech")
     ) {
       targetList = targetList.filter((t) => t.enemies.type !== "soldier");
-      console.log(targetList);
     }
 
     protocols.forEach((protocol) => {
