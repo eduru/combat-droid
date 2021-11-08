@@ -13,21 +13,39 @@ const avoidCrossfire = (scan) => {
   });
 };
 
+function prioritizeMech(scan) {
+  return scan.filter((e) => {
+    if (e.enemies.type === "mech") {
+      return e;
+    }
+  });
+}
+
+function avoidMech(scan) {
+  return scan.filter((e) => {
+    if (e.enemies.type !== "mech") {
+      return e;
+    }
+  });
+}
+
 const scan = [
   {
-    enemies: { number: 10, type: "soldier" },
+    enemies: { number: 10, type: "mech" },
     coordinates: { y: 35, x: 5 },
   },
   {
-    enemies: { number: 20, type: "soldier" },
+    enemies: { number: 20, type: "mech" },
     coordinates: { y: 30, x: 10 },
     allies: 3,
   },
 ];
 
-console.log(assistAllies(scan));
+console.log(prioritizeMech(scan));
 
 module.exports = {
   assistAllies,
   avoidCrossfire,
+  prioritizeMech,
+  avoidMech,
 };
