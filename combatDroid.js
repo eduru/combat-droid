@@ -1,32 +1,29 @@
-const { test, test2 } = require("./helpers.js");
+const { assistAllies, avoidCrossfire } = require("./helpers.js");
 
-test();
-test2();
+class TargetSelectionModule {
+  constructor() {}
 
-// class TargetSelectionModule {
-//   constructor() {}
+  setTarget(params) {
+    const { protocols, scan } = params;
 
-//   setTarget(params) {
-//     const { protocols, scan } = params;
+    if (!params) throw new Error("Invalid command");
 
-//     if (!params) throw new Error("Invalid command");
+    let target = [];
+    let instructions = [];
 
-//     let target = {};
-//     let instructions = [...scan];
+    protocols.forEach((protocol) => {
+      //  if (protocol === "closest-enemies") target.push("closest-enemies");
+      //  if (protocol === "furthest-enemies") target.push("furthest-enemies");
+      if (protocol === "assist-allies") assistAllies(scan);
+      if (protocol === "avoid-crossfire") avoidCrossfire(scan);
+      //if (protocol === "prioritize-mech") target.push(scan);
+      // if (protocol === "avoid-mech") target.push("avoid-mech");
+    });
+    console.log(target);
+  }
+}
 
-//     protocols.forEach((e) => {
-//       if (e === "closest-enemies") target.push("closest-enemies");
-//       if (e === "furthest-enemies") target.push("furthest-enemies");
-//       if (e === "assist-allies") target.push("assist-allies");
-//       if (e === "avoid-crossfire") target.push("avoid-crossfire");
-//       if (e === "prioritize-mech") target.push("prioritize-mech");
-//       if (e === "avoid-mech") target.push("avoid-mech");
-//     });
-//     console.log(target);
-//   }
-// }
-
-// const testDroid = new TargetSelectionModule();
-// testDroid.setTarget({ protocols: ["closest-enemies", "avoid-mech"] });
+const testDroid = new TargetSelectionModule();
+testDroid.setTarget({ protocols: ["closest-enemies", "avoid-mech"], scan });
 
 //module.exports = CombatDroid;
