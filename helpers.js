@@ -36,6 +36,24 @@ const addDistances = (scan) => {
   return scan.map((e) => (e.distance = calculate(e.coordinates)));
 };
 
+const closestEnemies = (scan) => {
+  const updatedEnemies = addDistances(scan);
+  console.log(updatedEnemies);
+  const closestEnemy = scan.reduce((min, current) => {
+    return min.distance < current.distance ? min : current;
+  });
+  return closestEnemy;
+};
+
+const furthestEnemies = (scan) => {
+  const updatedEnemies = addDistances(scan);
+  console.log(updatedEnemies);
+  const furthestEnemy = scan.reduce((max, current) => {
+    return max.distance > current.distance ? max : current;
+  });
+  return furthestEnemy;
+};
+
 const scan = [
   {
     enemies: { number: 10, type: "mech" },
@@ -48,7 +66,7 @@ const scan = [
   },
 ];
 
-console.log(addDistances(scan));
+console.log(furthestEnemies(scan), "test");
 
 module.exports = {
   assistAllies,
