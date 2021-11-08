@@ -37,8 +37,8 @@ const addDistances = (scan) => {
 };
 
 const closestEnemies = (scan) => {
-  const updatedEnemies = addDistances(scan);
-  console.log(updatedEnemies);
+  //const updatedEnemies = addDistances(scan);
+  //console.log(updatedEnemies);
   const closestEnemy = scan.reduce((min, current) => {
     return min.distance < current.distance ? min : current;
   });
@@ -46,8 +46,8 @@ const closestEnemies = (scan) => {
 };
 
 const furthestEnemies = (scan) => {
-  const updatedEnemies = addDistances(scan);
-  console.log(updatedEnemies);
+  //const updatedEnemies = addDistances(scan);
+  //console.log(updatedEnemies);
   const furthestEnemy = scan.reduce((max, current) => {
     return max.distance > current.distance ? max : current;
   });
@@ -66,11 +66,14 @@ const scan = [
   },
 ];
 
-console.log(furthestEnemies(scan), "test");
+//console.log(furthestEnemies(scan), "test");
 
 module.exports = {
   assistAllies,
   avoidCrossfire,
   prioritizeMech,
   avoidMech,
+  addDistances,
+  closestEnemies,
+  furthestEnemies,
 };
