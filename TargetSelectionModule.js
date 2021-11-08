@@ -56,12 +56,12 @@ const scan = [
   },
 ];
 
-const testDroid = new TargetSelectionModule();
-console.log(
-  testDroid.setTarget({
-    protocols: ["assist-allies"],
-    scan,
-  })
-);
+//const testDroid = new TargetSelectionModule();
+// console.log(
+//   testDroid.setTarget({
+//     protocols: ["assist-allies"],
+//     scan,
+//   })
+// );
 
-//module.exports = CombatDroid;
+module.exports = TargetSelectionModule;

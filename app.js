@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
+const TargetSelectionModule = require("./TargetSelectionModule");
+const combatDroid = new TargetSelectionModule();
+
 const app = express();
-const PORT = 3000;
 
 app.use(express.json());
 app.use(
@@ -15,10 +17,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/radar", (req, res) => {
-  const { protocols, scan } = req.body;
-  res.json(req.body);
+  const target = combatDroid.setTarget(req.body);
+  res.status(200).send(target);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}`);
+app.listen(3000, () => {
+  console.log("Server listening on port: 3000");
 });
